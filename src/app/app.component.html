@@ -1,0 +1,59 @@
+<mat-toolbar>
+  <img width="50" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  Open Weather Map
+</mat-toolbar>
+<main>
+  <mat-grid-list cols="2" rowHeight="4:3">
+
+    <!-- Columna 1 -->
+    <mat-grid-tile>
+      <mat-card>
+        <mat-card-subtitle>
+          <img width="150" src="../assets/weather.png"/>
+          <h1>Search Weather
+            <i class="material-icons">
+              search
+            </i>
+          </h1>
+        </mat-card-subtitle>
+        <mat-card-content>
+
+          <form (submit)="submitLocation(cityName, countryCode)" class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="New York" value="" #cityName>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="US" value="" #countryCode>
+            </mat-form-field>
+            <div class="example-full-width">
+              <button mat-raised-button color="primary" type="submit">Get Weather
+                <i class="material-icons">
+                  public
+                </i>
+              </button>
+            </div>
+          </form>
+
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- Columna 2 -->
+    <mat-grid-tile>
+      <mat-card *ngIf="weather">
+        <mat-card-subtitle>
+          <img src="../assets/city.png" width="165">
+          <h1> {{weather.list[0].name}} </h1>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <p>Temperatura: {{weather.list[0].main.temp}} °C</p>
+          <p>Humedad: {{weather.list[0].main.humidity}} %</p>
+          <p>Presión: {{weather.list[0].main.pressure}}</p>
+          <p>Longitud: {{weather.list[0].coord.lon}} Latitud: {{weather.list[0].coord.lat}} </p>
+          <p>Descripción: {{weather.list[0].weather[0].description}}</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</main>
